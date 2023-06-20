@@ -42,16 +42,6 @@ const InputForm: React.FC<Props> = (props) => {
 
   const onValid: SubmitHandler<FormValues> = (data: FormValues) => {
     props.onSubmit(data)
-    // getRoutesApiResponse(data.origin, data.destination, data.travelMode)
-    //   .then((res) => {
-    //     console.log('Response', res)
-    //     props.onSubmit(res.data)
-    //   })
-    //   .catch((err) => console.log(err))
-  }
-
-  const onError = (err) => {
-    console.log(err)
   }
 
   const onAddressObtained = (address: Address) => {
@@ -60,13 +50,7 @@ const InputForm: React.FC<Props> = (props) => {
   }
 
   return (
-    <Stack
-      component='form'
-      noValidate
-      onSubmit={handleSubmit(onValid, onError)}
-      spacing={2}
-      sx={{ m: 2 }}
-    >
+    <Stack component='form' noValidate onSubmit={handleSubmit(onValid)} spacing={2} sx={{ m: 2 }}>
       <Typography>出発地</Typography>
       <ZipcodeForm onAddressObtained={onAddressObtained} />
       <Controller
