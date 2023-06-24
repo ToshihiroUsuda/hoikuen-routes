@@ -13,7 +13,7 @@ export const getGeocodeApiResponse = async (address: string): Promise<LatLng> =>
   const config: AxiosRequestConfig = {
     params: {
       address: address,
-      key: process.env.NEXT_PUBLIC_GEOCODING_API_KEY,
+      key: process.env.NEXT_PUBLIC_MAP_API_KEY,
     },
   }
   const res = await axios.get<GeocodingApiResponse>(apiURL, config)

@@ -105,7 +105,7 @@ export default ResultsView
 
 const testResults = [
   {
-    name: 'あーす保育園戸塚',
+    name: 'tあーす保育園戸塚',
     address: '神奈川県横浜市戸塚区矢部町３００７－４',
     latitude: 35.4048,
     longitude: 139.536375,
@@ -113,7 +113,7 @@ const testResults = [
     duration: '309s',
   },
   {
-    name: 'ベイキッズひまわり保育園',
+    name: 'tベイキッズひまわり保育園',
     address: '神奈川県横浜市戸塚区矢部町３２１',
     latitude: 35.40671,
     longitude: 139.535756,
@@ -121,7 +121,7 @@ const testResults = [
     duration: '415s',
   },
   {
-    name: 'あーす保育園戸塚Ａｎｎｅｘ',
+    name: 'tあーす保育園戸塚Ａｎｎｅｘ',
     address: '神奈川県横浜市戸塚区矢部町１４－２',
     latitude: 35.402738,
     longitude: 139.536949,
@@ -129,7 +129,7 @@ const testResults = [
     duration: '490s',
   },
   {
-    name: '戸塚せせらぎ保育園',
+    name: 't戸塚せせらぎ保育園',
     address: '神奈川県横浜市戸塚区矢部町３００１－２',
     latitude: 35.402699,
     longitude: 139.535599,
@@ -137,7 +137,7 @@ const testResults = [
     duration: '531s',
   },
   {
-    name: 'ちゃいれっく戸塚保育園',
+    name: 'tちゃいれっく戸塚保育園',
     address: '神奈川県横浜市戸塚区矢部町３００２－１',
     latitude: 35.402981,
     longitude: 139.535384,
@@ -145,7 +145,7 @@ const testResults = [
     duration: '555s',
   },
   {
-    name: '明日葉保育園第二戸塚園',
+    name: 't明日葉保育園第二戸塚園',
     address: '神奈川県横浜市戸塚区吉田町３０００－５',
     latitude: 35.402519,
     longitude: 139.534801,
@@ -153,7 +153,7 @@ const testResults = [
     duration: '590s',
   },
   {
-    name: '明日葉保育園第三戸塚園',
+    name: 't明日葉保育園第三戸塚園',
     address: '神奈川県横浜市戸塚区吉田町３００３－２',
     latitude: 35.402389,
     longitude: 139.534268,
@@ -161,7 +161,7 @@ const testResults = [
     duration: '608s',
   },
   {
-    name: '銀杏保育園　胡桃館',
+    name: 't銀杏保育園　胡桃館',
     address: '神奈川県横浜市戸塚区吉田町３００１－１－１０１',
     latitude: 35.402056,
     longitude: 139.534522,
@@ -169,7 +169,7 @@ const testResults = [
     duration: '619s',
   },
   {
-    name: '幼保連携型認定こども園　ひまわり幼稚園',
+    name: 't幼保連携型認定こども園　ひまわり幼稚園',
     address: '神奈川県横浜市戸塚区戸塚町５１１８',
     latitude: 35.405102,
     longitude: 139.532324,
@@ -177,7 +177,7 @@ const testResults = [
     duration: '707s',
   },
   {
-    name: 'スターチャイルド≪戸塚ナーサリー≫',
+    name: 'tスターチャイルド≪戸塚ナーサリー≫',
     address: '神奈川県横浜市戸塚区矢部町６４１番地３４',
     latitude: 35.4055859,
     longitude: 139.5319852,

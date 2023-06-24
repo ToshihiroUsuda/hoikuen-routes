@@ -32,7 +32,7 @@ export const getRoutesApiResponse = async (params: RoutesApiParams): Promise<Rou
   const postConfig: AxiosRequestConfig = {
     headers: {
       'Content-Type': 'application/json',
-      'X-Goog-Api-Key': process.env.NEXT_PUBLIC_ROUTES_API_KEY,
+      'X-Goog-Api-Key': process.env.NEXT_PUBLIC_MAP_API_KEY,
       'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters',
     },
   }
