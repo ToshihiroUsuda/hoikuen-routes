@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 
 /* types */
+import { HoikuenRoute } from '../types/location'
 import { FormValues } from './form'
 
 /* libs */
@@ -50,8 +51,11 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
     const getResults = async () => {
       try {
         const searchResults = await calcRoutes(searchParams)
+        const sortedResults = searchResults
+          .slice()
+          .sort((a, b) => a.distanceMeters - b.distanceMeters)
         // console.log(JSON.stringify(searchResults, null, 4))
-        setResults(searchResults)
+        setResults(sortedResults)
       } catch (error) {
         console.log()
       }

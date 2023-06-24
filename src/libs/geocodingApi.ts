@@ -1,5 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
+/*types */
+import { LatLng } from '../types/location'
+
 export type GeocodingApiResponse = {
   results: { geometry: { location: { lat: number; lng: number } } }[]
 }

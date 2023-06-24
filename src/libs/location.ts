@@ -1,4 +1,8 @@
 import { getDistance } from 'geolib'
+
+/* types */
+import { LatLng, HoikuenLocation } from '../types/location'
+
 import kanagawaLocation from './data/kanagawa.json'
 
 const hoikuenLocationDict: Record<string, HoikuenLocation[]> = {

@@ -41,12 +41,16 @@ const ZipcodeForm: React.FC<Props> = (props) => {
   const [invalidError, setInvalidError] = useState('')
   const onValid = () => {
     const zipcode = getValues('zipcode')
-    getZipcodeApiResponse(zipcode)
-      .then((address) => {
-        props.onAddressObtained(address)
-        setInvalidError('')
-      })
-      .catch(() => setInvalidError('不正な郵便番号です'))
+    if (zipcode) {
+      getZipcodeApiResponse(zipcode)
+        .then((address) => {
+          props.onAddressObtained(address)
+          setInvalidError('')
+        })
+        .catch(() => setInvalidError('不正な郵便番号です'))
+    } else {
+      setInvalidError('不正な郵便番号です')
+    }
   }
 
   useEffect(() => {

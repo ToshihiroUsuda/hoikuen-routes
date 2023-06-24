@@ -1,5 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
+/* types */
+import { LatLng, Route, WayPoint } from '../types/location'
+
 type RoutesApiResponse = {
   routes: Route[]
 }

@@ -1,21 +1,21 @@
-type LatLng = {
+export type LatLng = {
   latitude: number
   longitude: number
 }
 
-type Route = {
+export type Route = {
   distanceMeters: number
   duration: string
 }
 
-type WayPoint = {
+export type WayPoint = {
   address?: string
   location?: { latLng: LatLng }
 }
 
-type HoikuenLocation = {
+export type HoikuenLocation = {
   name: string
   address: string
 } & LatLng
 
-type HoikuenRoute = HoikuenLocation & Route
+export type HoikuenRoute = HoikuenLocation & Route
