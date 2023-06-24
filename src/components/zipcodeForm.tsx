@@ -13,7 +13,8 @@ const schema = yup.object().shape({
     .min(1, '郵便番号を入力してください')
     .matches(/^[^-]+$/, 'ハイフンなしで入力してください')
     .matches(/^[0-9]+$/, '半角数字で入力してください')
-    .length(7, '7桁で入力してください'),
+    .length(7, '7桁で入力してください')
+    .required(),
 })
 
 export type FormValues = yup.InferType<typeof schema>
@@ -41,16 +42,12 @@ const ZipcodeForm: React.FC<Props> = (props) => {
   const [invalidError, setInvalidError] = useState('')
   const onValid = () => {
     const zipcode = getValues('zipcode')
-    if (zipcode) {
-      getZipcodeApiResponse(zipcode)
-        .then((address) => {
-          props.onAddressObtained(address)
-          setInvalidError('')
-        })
-        .catch(() => setInvalidError('不正な郵便番号です'))
-    } else {
-      setInvalidError('不正な郵便番号です')
-    }
+    getZipcodeApiResponse(zipcode)
+      .then((address) => {
+        props.onAddressObtained(address)
+        setInvalidError('')
+      })
+      .catch(() => setInvalidError('不正な郵便番号です'))
   }
 
   useEffect(() => {
