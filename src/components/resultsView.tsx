@@ -59,7 +59,7 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
           .sort((a, b) => a.distanceMeters - b.distanceMeters)
         setResults(sortedResults)
       } catch (error) {
-        console.log()
+        console.log(error)
       }
     }
     getResults()

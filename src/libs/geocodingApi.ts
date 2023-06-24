@@ -10,7 +10,6 @@ export type GeocodingApiResponse = {
 const apiURL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
 export const getGeocodeApiResponse = async (address: string): Promise<LatLng> => {
-  console.log('getGeocode', address)
   const config: AxiosRequestConfig = {
     params: {
       address: address,
