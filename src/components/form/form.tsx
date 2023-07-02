@@ -74,7 +74,7 @@ const InputForm: React.FC<Props> = (props) => {
     setFocus('origin')
     setValue('origin', address.address1 + address.address2 + address.address3)
   }
-  const TypeSelectProps: SelectProps<string[]> = {
+  const TypeSelectProps: Partial<SelectProps<string[]>> = {
     multiple: true,
     renderValue: (selectedOptions: string[]) => {
       if (selectedOptions.length == 0) {

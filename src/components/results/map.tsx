@@ -66,7 +66,7 @@ const ResultsMap: React.FC<Props> = ({ origin, searchResults }) => {
           )
         })}
       </GoogleMapComponent>
-      <Typography>ピンをクリックするとルートを表示できます</Typography>
+      <Typography>※ピンをクリックするとルートを表示できます</Typography>
     </>
   )
 }
