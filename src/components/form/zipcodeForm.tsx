@@ -5,7 +5,10 @@ import { Controller, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 /*lib*/
-import { getZipcodeApiResponse, Address } from '../libs/zipcodeApi'
+import { getZipcodeApiResponse, Address } from '../../libs/zipcodeApi'
+
+/*constant */
+import { gradation } from '../../constants'
 
 const schema = yup.object().shape({
   zipcode: yup
@@ -70,7 +73,12 @@ const ZipcodeForm: React.FC<Props> = (props) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
-                <Button variant='contained' onClick={handleSubmit(onValid)} disabled={!isValid}>
+                <Button
+                  variant='contained'
+                  onClick={handleSubmit(onValid)}
+                  disabled={!isValid}
+                  sx={isValid ? { background: gradation, color: 'black' } : {}}
+                >
                   住所入力
                 </Button>
               </InputAdornment>

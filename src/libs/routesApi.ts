@@ -33,7 +33,7 @@ export const getRoutesApiResponse = async (params: RoutesApiParams): Promise<Rou
     headers: {
       'Content-Type': 'application/json',
       'X-Goog-Api-Key': process.env.NEXT_PUBLIC_MAP_API_KEY,
-      'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters',
+      'X-Goog-FieldMask': 'routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline',
     },
   }
   const res = await axios.post<RoutesApiResponse>(apiURL, postData, postConfig)

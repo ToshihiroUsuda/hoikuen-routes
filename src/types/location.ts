@@ -6,6 +6,7 @@ export type LatLng = {
 export type Route = {
   distanceMeters: number
   duration: string
+  polyline: { encodedPolyline: string }
 }
 
 export type WayPoint = {
@@ -16,6 +17,13 @@ export type WayPoint = {
 export type HoikuenLocation = {
   name: string
   address: string
+  type: string
+  capacityAge0: number
+  capacityAge1: number
+  capacityAge2: number
+  capacityAge3: number
+  capacityAge4: number
+  capacityAge5: number
 } & LatLng
 
 export type HoikuenRoute = HoikuenLocation & Route

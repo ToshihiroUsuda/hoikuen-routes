@@ -12,11 +12,13 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import Head from 'next/head'
-// import Link from 'next/link'
+
 import React, { useState } from 'react'
 
 import Link from '../common/link'
-// import InquiryButton from '../inquiry/inquiryButton'
+
+/*constants*/
+import { gradation } from '../../constants'
 
 interface ILayoutProps extends React.PropsWithChildren {
   home?: boolean
@@ -36,7 +38,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
         <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
         <meta name='msapplication-TileColor' content='#da532c' />
         <meta name='theme-color' content='#ffffff' /> */}
-        <meta name='description' content='あなたの家から保育園までのルートを検索します' />
+        <meta name='description' content='あなたの家から保育園・幼稚園までのルートを検索します' />
       </Head>
       <Box
         sx={{
@@ -51,7 +53,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
             height: '64px',
             display: 'flex',
             justifyContent: 'center',
-            background: 'linear-gradient(90deg, rgba(253, 146, 146, 1), rgba(209, 254, 212, 1))',
+            background: gradation,
           }}
           position='static'
           elevation={0}
@@ -87,7 +89,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
                   ml: { xs: 0, sm: 'auto' },
                   display: { xs: 'block', sm: 'flex' },
                   background: {
-                    xs: 'linear-gradient(90deg, rgba(253, 146, 146, 1), rgba(209, 254, 212, 1))',
+                    xs: gradation,
                     sm: 'rgba(255, 255, 255, 0)',
                   },
                 }}
