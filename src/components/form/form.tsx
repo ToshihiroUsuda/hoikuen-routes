@@ -8,6 +8,7 @@ import {
   Typography,
   Checkbox,
   ListItemText,
+  SelectProps,
 } from '@mui/material'
 import React from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
@@ -73,6 +74,19 @@ const InputForm: React.FC<Props> = (props) => {
     setFocus('origin')
     setValue('origin', address.address1 + address.address2 + address.address3)
   }
+  const TypeSelectProps: SelectProps<string[]> = {
+    multiple: true,
+    renderValue: (selectedOptions: string[]) => {
+      if (selectedOptions.length == 0) {
+        return <Typography>一つ以上選択してください</Typography>
+      }
+      const selectedTypes = hoikuenTypes.filter((type) => selectedOptions.indexOf(type) > -1)
+      if (JSON.stringify(selectedTypes) === JSON.stringify(hoikuenTypes)) {
+        return <Typography>すべて</Typography>
+      }
+      return <Typography>{selectedTypes.join(', ')}</Typography>
+    },
+  }
 
   return (
     <Stack
@@ -110,24 +124,7 @@ const InputForm: React.FC<Props> = (props) => {
           <TextField
             {...field}
             select
-            SelectProps={{
-              multiple: true,
-              renderValue: (selectedOptions: string[] | undefined) => {
-                if (!!selectedOptions) {
-                  return '一つ以上選択してください'
-                }
-                if (selectedOptions.length == 0) {
-                  return '一つ以上選択してください'
-                }
-                const selectedTypes = hoikuenTypes.filter(
-                  (type) => selectedOptions.indexOf(type) > -1,
-                )
-                if (JSON.stringify(selectedTypes) === JSON.stringify(hoikuenTypes)) {
-                  return 'すべて'
-                }
-                return selectedTypes.join(', ')
-              },
-            }}
+            SelectProps={TypeSelectProps}
             label='施設の種類'
             fullWidth
             error={'type' in errors}

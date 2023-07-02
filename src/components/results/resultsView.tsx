@@ -22,9 +22,9 @@ type Props = {
 const calcRoutes = async (
   params: FormValues,
 ): Promise<{ originLatLng: LatLng; searchResults: HoikuenRoute[] }> => {
-  if (process.env.NODE_ENV === 'development') {
-    return { originLatLng: testOrigin, searchResults: testResults }
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   return { originLatLng: testOrigin, searchResults: testResults }
+  // }
   // geocodingの取得
   const originLatLng = await getGeocodeApiResponse(params.origin)
   // 近くの保育園の取得
