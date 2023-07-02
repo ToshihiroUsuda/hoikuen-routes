@@ -112,7 +112,10 @@ const InputForm: React.FC<Props> = (props) => {
             select
             SelectProps={{
               multiple: true,
-              renderValue: (selectedOptions: string[]) => {
+              renderValue: (selectedOptions: string[] | undefined) => {
+                if (!!selectedOptions) {
+                  return '一つ以上選択してください'
+                }
                 if (selectedOptions.length == 0) {
                   return '一つ以上選択してください'
                 }
