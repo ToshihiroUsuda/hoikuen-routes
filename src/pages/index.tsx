@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Typography from '@mui/material/Typography'
 
 /* components */
 import InputForm, { FormValues } from '../components/form/form'
@@ -24,9 +25,15 @@ const Home: NextPage = () => {
   return (
     <Layout home>
       <Head>
-        <title>保育園までの距離と時間</title>
+        <title>
+          保育園・幼稚園ルート検索: 自宅から施設までの距離と所要時間を検索！【神奈川県版】
+        </title>
       </Head>
       <Box pt={16} pb={16}>
+        <Box sx={{ mx: { sm: 0, md: 8 } }} py={4}>
+          <Typography variant='h4'>神奈川県版</Typography>
+          <Typography variant='h3'>保育園・幼稚園ルート検索</Typography>
+        </Box>
         <Usage />
         <InputForm onSubmit={onSubmit} />
         {searchParams && (

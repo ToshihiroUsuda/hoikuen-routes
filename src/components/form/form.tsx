@@ -34,8 +34,8 @@ const hoikuenTypes = [
 const schema = yup.object().shape({
   origin: yup.string().required('必須項目です'),
   type: yup.array().of(yup.string()).required('最低1つ選択してください'),
-  age: yup.number().oneOf([0, 1, 2, 3, 4, 5]),
-  capacity: yup.number(),
+  age: yup.number().oneOf([0, 1, 2, 3, 4, 5]).required('必須項目です'),
+  capacity: yup.number().required('必須項目です'),
   travelMode: yup.string().oneOf(['DRIVE', 'BICYCLE', 'WALK']).required('必須項目です'),
 })
 

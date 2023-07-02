@@ -60,7 +60,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
         >
           <Toolbar>
             <Typography variant='h6' color='black' sx={{ flexGrow: 1 }}>
-              保育園ルート検索
+              保育園・幼稚園ルート検索
             </Typography>
             <IconButton
               sx={{
