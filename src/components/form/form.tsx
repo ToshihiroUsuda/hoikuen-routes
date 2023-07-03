@@ -126,7 +126,9 @@ const InputForm: React.FC<Props> = (props) => {
             <Select<string[]>
               {...field}
               onChange={(event: SelectChangeEvent<string[]>) => {
-                field.onChange(event.target.value)
+                const value = event.target.value
+                const values = typeof value === 'string' ? [value] : value
+                field.onChange(values)
               }}
               multiple
               renderValue={(selectedOptions: string[]) => {
