@@ -9,6 +9,10 @@ import {
   Checkbox,
   ListItemText,
   SelectProps,
+  Select,
+  FormControl,
+  InputLabel,
+  FormHelperText,
 } from '@mui/material'
 import React from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
@@ -32,7 +36,16 @@ const hoikuenTypes = [
   '居宅訪問型保育事業者',
   '事業所内保育事業者',
 ]
-const schema = yup.object().shape({
+
+export type SearchParams = {
+  origin: string
+  type: string[]
+  age: 0 | 1 | 2 | 3 | 4 | 5
+  capacity: number
+  travelMode: 'DRIVE' | 'BICYCLE' | 'WALK'
+}
+
+const schema = yup.object<SearchParams>().shape({
   origin: yup.string().required('必須項目です'),
   type: yup.array().of(yup.string()).required('最低1つ選択してください'),
   age: yup.number().oneOf([0, 1, 2, 3, 4, 5]).required('必須項目です'),
@@ -40,9 +53,9 @@ const schema = yup.object().shape({
   travelMode: yup.string().oneOf(['DRIVE', 'BICYCLE', 'WALK']).required('必須項目です'),
 })
 
-export type FormValues = yup.InferType<typeof schema>
+// export type FormValues = yup.InferType<typeof schema>
 
-export const defaultValues: FormValues = {
+export const defaultValues: SearchParams = {
   origin: '',
   type: hoikuenTypes,
   age: 0,
@@ -51,7 +64,7 @@ export const defaultValues: FormValues = {
 }
 
 type Props = {
-  onSubmit: ((res: FormValues) => void) | ((res: FormValues) => Promise<void>)
+  onSubmit: ((res: SearchParams) => void) | ((res: SearchParams) => Promise<void>)
 }
 
 const InputForm: React.FC<Props> = (props) => {
@@ -61,12 +74,12 @@ const InputForm: React.FC<Props> = (props) => {
     setValue,
     setFocus,
     handleSubmit,
-  } = useForm<FormValues>({
+  } = useForm<SearchParams>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   })
 
-  const onValid: SubmitHandler<FormValues> = (data: FormValues) => {
+  const onValid: SubmitHandler<SearchParams> = (data: SearchParams) => {
     props.onSubmit(data)
   }
 
@@ -78,13 +91,13 @@ const InputForm: React.FC<Props> = (props) => {
     multiple: true,
     renderValue: (selectedOptions: string[]) => {
       if (selectedOptions.length == 0) {
-        return <Typography>一つ以上選択してください</Typography>
+        return '一つ以上選択してください'
       }
       const selectedTypes = hoikuenTypes.filter((type) => selectedOptions.indexOf(type) > -1)
       if (JSON.stringify(selectedTypes) === JSON.stringify(hoikuenTypes)) {
-        return <Typography>すべて</Typography>
+        return 'すべて'
       }
-      return <Typography>{selectedTypes.join(', ')}</Typography>
+      return selectedTypes.join(', ')
     },
   }
 
@@ -121,24 +134,38 @@ const InputForm: React.FC<Props> = (props) => {
         name='type'
         control={control}
         render={({ field }) => (
-          <TextField
-            {...field}
-            select
-            SelectProps={TypeSelectProps}
-            label='施設の種類'
-            fullWidth
-            error={'type' in errors}
-            helperText={errors.type?.message}
-          >
-            {hoikuenTypes.map((type, index) => {
-              return (
-                <MenuItem key={index} value={type}>
-                  <Checkbox checked={field.value.indexOf(type) > -1} />
-                  <ListItemText primary={type} />
-                </MenuItem>
-              )
-            })}
-          </TextField>
+          <FormControl>
+            <InputLabel htmlFor='my-input'>施設の種類</InputLabel>
+            <Select<string[]>
+              {...field}
+              multiple
+              renderValue={(selectedOptions: string[]) => {
+                if (!selectedOptions || selectedOptions.length == 0) {
+                  return '一つ以上選択してください'
+                }
+                const selectedTypes = hoikuenTypes.filter(
+                  (type) => selectedOptions.indexOf(type) > -1,
+                )
+                if (JSON.stringify(selectedTypes) === JSON.stringify(hoikuenTypes)) {
+                  return 'すべて'
+                }
+                return selectedTypes.join(', ')
+              }}
+              fullWidth
+              label='施設の種類'
+              error={'type' in errors}
+            >
+              {hoikuenTypes.map((type, index) => {
+                return (
+                  <MenuItem key={index} value={type}>
+                    <Checkbox checked={field.value.indexOf(type) > -1} />
+                    <ListItemText primary={type} />
+                  </MenuItem>
+                )
+              })}
+            </Select>
+            <FormHelperText>{errors.type?.message}</FormHelperText>
+          </FormControl>
         )}
       />
       <Box display='flex' alignItems='end'>
@@ -204,7 +231,7 @@ const InputForm: React.FC<Props> = (props) => {
           </TextField>
         )}
       />
-
+      <Select<string[]> {...TypeSelectProps}> </Select>
       <Button
         variant='contained'
         type='submit'

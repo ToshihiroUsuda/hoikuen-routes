@@ -4,23 +4,25 @@ import Head from 'next/head'
 import Typography from '@mui/material/Typography'
 
 /* components */
-import InputForm, { FormValues } from '../components/form/form'
+import InputForm, { SearchParams } from '../components/form/form'
 import ResultsView from '../components/results/resultsView'
 import Layout from '../components/shell/layout'
 import Usage from '../components/usage/usage'
 import { Box } from '@mui/material'
 
 const Home: NextPage = () => {
-  const [searchParams, setSearchParams] = useState<FormValues | null>(null)
-  const onSubmit = (data: FormValues) => {
-    setSearchParams(data)
+  const [searchParams, setSearchParams] = useState<SearchParams | null>(null)
+  const onSubmit = (data: SearchParams) => {
+    if (JSON.stringify(data) !== JSON.stringify(searchParams)) {
+      setSearchParams({ ...data })
+    }
   }
   const resultsViewRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (searchParams && resultsViewRef && resultsViewRef.current) {
       resultsViewRef.current.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [searchParams])
+  }, [searchParams, resultsViewRef])
 
   return (
     <Layout home>

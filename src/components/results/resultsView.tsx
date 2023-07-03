@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import { CircularProgress } from '@mui/material'
 
 /* types */
 import { HoikuenRoute, LatLng } from '../../types/location'
-import { FormValues } from '../form/form'
+import { SearchParams } from '../form/form'
 
 /* components */
 import ResultsTable from './table'
@@ -16,11 +17,11 @@ import { getTopKNearestHoikuen } from '../../libs/hoikuen'
 import { getRoutesApiResponse } from '../../libs/routesApi'
 
 type Props = {
-  searchParams: FormValues
+  searchParams: SearchParams
 }
 
 const calcRoutes = async (
-  params: FormValues,
+  params: SearchParams,
 ): Promise<{ originLatLng: LatLng; searchResults: HoikuenRoute[] }> => {
   // if (process.env.NODE_ENV === 'development') {
   //   return { originLatLng: testOrigin, searchResults: testResults }
@@ -58,7 +59,7 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
     const getResults = async () => {
       try {
         const { originLatLng, searchResults } = await calcRoutes(searchParams)
-        console.log(originLatLng, searchResults)
+        // console.log(originLatLng, searchResults)
 
         const sortedResults = searchResults
           .slice()
@@ -73,7 +74,11 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
   }, [searchParams])
 
   if (!origin || !results) {
-    return <Typography>Loading...</Typography>
+    return (
+      <Box py={8} sx={{ mx: { sm: 0, md: 8 } }} display={'flex'} justifyContent={'center'}>
+        <CircularProgress />
+      </Box>
+    )
   }
 
   return (

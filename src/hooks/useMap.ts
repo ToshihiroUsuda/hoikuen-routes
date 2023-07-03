@@ -12,7 +12,7 @@ type Props = {
 export const useMap = ({ origin, destinations }: Props) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY || '',
   })
 
   const { bounds } = useMemo(() => {
@@ -52,7 +52,6 @@ export const useMap = ({ origin, destinations }: Props) => {
       new window.google.maps.LatLng(bounds[1].latitude, bounds[1].longitude),
     )
     map.fitBounds(latLngBounds, 32)
-    console.log(window.google.maps)
   }
 
   const onUnmount = useCallback(() => {}, [])
