@@ -37,23 +37,23 @@ const hoikuenTypes = [
   '事業所内保育事業者',
 ]
 
-export type SearchParams = {
-  origin: string
-  type: string[]
-  age: number
-  capacity: number
-  travelMode: 'DRIVE' | 'BICYCLE' | 'WALK'
-}
+// export type SearchParams = {
+//   origin: string
+//   type: string[]
+//   age: number
+//   capacity: number
+//   travelMode: 'DRIVE' | 'BICYCLE' | 'WALK'
+// }
 
-const schema = yup.object<SearchParams>().shape({
+const schema = yup.object().shape({
   origin: yup.string().required('必須項目です'),
   type: yup.array().required('最低ひとつ選択してください').of(yup.string().required()).min(1),
   age: yup.number().required('必須項目です').oneOf([0, 1, 2, 3, 4, 5]),
   capacity: yup.number().required('必須項目です'),
-  travelMode: yup.string().required('必須項目です').oneOf(['WALK', 'DRIVE', 'BICYCLE']),
+  travelMode: yup.string().oneOf(['WALK', 'DRIVE', 'BICYCLE']).required('必須項目です'),
 })
 
-// export type FormValues = yup.InferType<typeof schema>
+export type SearchParams = yup.InferType<typeof schema>
 
 export const defaultValues: SearchParams = {
   origin: '',
