@@ -34,7 +34,9 @@ const Home: NextPage = () => {
       <Box pt={16} pb={16}>
         <Box sx={{ mx: { sm: 0, md: 8 } }} py={4}>
           <Typography variant='h4'>神奈川県版</Typography>
-          <Typography variant='h3'>保育園・幼稚園ルート検索</Typography>
+          <Typography variant='h3' sx={{ fontWeight: 'bold' }}>
+            保育園・幼稚園ルート検索
+          </Typography>
         </Box>
         <Usage />
         <InputForm onSubmit={onSubmit} />

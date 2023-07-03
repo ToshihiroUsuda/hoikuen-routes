@@ -51,7 +51,7 @@ export const useMap = ({ origin, destinations }: Props) => {
       new window.google.maps.LatLng(bounds[0].latitude, bounds[0].longitude),
       new window.google.maps.LatLng(bounds[1].latitude, bounds[1].longitude),
     )
-    map.fitBounds(latLngBounds, 32)
+    map.fitBounds(latLngBounds, 16)
   }
 
   const onUnmount = useCallback(() => {}, [])

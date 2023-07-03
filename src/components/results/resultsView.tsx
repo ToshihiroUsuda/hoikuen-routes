@@ -23,9 +23,9 @@ type Props = {
 const calcRoutes = async (
   params: SearchParams,
 ): Promise<{ originLatLng: LatLng; searchResults: HoikuenRoute[] }> => {
-  // if (process.env.NODE_ENV === 'development') {
-  //   return { originLatLng: testOrigin, searchResults: testResults }
-  // }
+  if (process.env.NODE_ENV === 'development') {
+    return { originLatLng: testOrigin, searchResults: testResults }
+  }
   // geocodingの取得
   const originLatLng = await getGeocodeApiResponse(params.origin)
   // 近くの保育園の取得
@@ -52,10 +52,12 @@ const calcRoutes = async (
 }
 
 const ResultsView: React.FC<Props> = ({ searchParams }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState<HoikuenRoute[]>([])
   const [origin, setOrigin] = useState<LatLng | null>(null)
 
   useEffect(() => {
+    setIsLoading(true)
     const getResults = async () => {
       try {
         const { originLatLng, searchResults } = await calcRoutes(searchParams)
@@ -66,16 +68,18 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
           .sort((a, b) => a.distanceMeters - b.distanceMeters)
         setResults(sortedResults)
         setOrigin(originLatLng)
+        setIsLoading(false)
       } catch (error) {
+        setIsLoading(false)
         console.log(error)
       }
     }
     getResults()
   }, [searchParams])
 
-  if (!origin || !results) {
+  if (isLoading || !origin || !results) {
     return (
-      <Box py={8} sx={{ mx: { sm: 0, md: 8 } }} display={'flex'} justifyContent={'center'}>
+      <Box py={16} sx={{ mx: { sm: 0, md: 8 } }} display={'flex'} justifyContent={'center'}>
         <CircularProgress />
       </Box>
     )
@@ -87,7 +91,9 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
         検索結果
       </Typography>
       {results.length == 0 ? (
-        <Typography>条件に合う保育園・幼稚園が見つかりませんでした。</Typography>
+        <Box m={4}>
+          <Typography>条件に合う保育園・幼稚園が見つかりませんでした。</Typography>
+        </Box>
       ) : (
         <Box>
           <Box pt={4}>
