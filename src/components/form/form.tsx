@@ -47,7 +47,7 @@ export type SearchParams = {
 
 const schema = yup.object<SearchParams>().shape({
   origin: yup.string().required('必須項目です'),
-  type: yup.array().of(yup.string()).min(1),
+  type: yup.array().required('最低ひとつ選択してください').of(yup.string().required()).min(1),
   age: yup.number().required('必須項目です').oneOf([0, 1, 2, 3, 4, 5]),
   capacity: yup.number().required('必須項目です'),
   travelMode: yup.string().required('必須項目です').oneOf(['WALK', 'DRIVE', 'BICYCLE']),
