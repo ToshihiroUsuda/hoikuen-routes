@@ -8,11 +8,11 @@ import {
   Typography,
   Checkbox,
   ListItemText,
-  SelectProps,
   Select,
   FormControl,
   InputLabel,
   FormHelperText,
+  SelectChangeEvent,
 } from '@mui/material'
 import React from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
@@ -87,19 +87,6 @@ const InputForm: React.FC<Props> = (props) => {
     setFocus('origin')
     setValue('origin', address.address1 + address.address2 + address.address3)
   }
-  const TypeSelectProps: Partial<SelectProps<string[]>> = {
-    multiple: true,
-    renderValue: (selectedOptions: string[]) => {
-      if (selectedOptions.length == 0) {
-        return '一つ以上選択してください'
-      }
-      const selectedTypes = hoikuenTypes.filter((type) => selectedOptions.indexOf(type) > -1)
-      if (JSON.stringify(selectedTypes) === JSON.stringify(hoikuenTypes)) {
-        return 'すべて'
-      }
-      return selectedTypes.join(', ')
-    },
-  }
 
   return (
     <Stack
@@ -135,9 +122,12 @@ const InputForm: React.FC<Props> = (props) => {
         control={control}
         render={({ field }) => (
           <FormControl>
-            <InputLabel htmlFor='my-input'>施設の種類</InputLabel>
+            <InputLabel>施設の種類</InputLabel>
             <Select<string[]>
               {...field}
+              onChange={(event: SelectChangeEvent<string[]>, child: React.ReactNode) => {
+                field.onChange(event)
+              }}
               multiple
               renderValue={(selectedOptions: string[]) => {
                 if (!selectedOptions || selectedOptions.length == 0) {
