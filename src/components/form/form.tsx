@@ -125,8 +125,8 @@ const InputForm: React.FC<Props> = (props) => {
             <InputLabel>施設の種類</InputLabel>
             <Select<string[]>
               {...field}
-              onChange={(event: SelectChangeEvent<string[]>, child: React.ReactNode) => {
-                field.onChange(event)
+              onChange={(event: SelectChangeEvent<string[]>) => {
+                field.onChange(event.target.value)
               }}
               multiple
               renderValue={(selectedOptions: string[]) => {
