@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box } from '@mui/material'
 
 // const hostname = "hoikuen-routes.ver?"  //本番サイトのホスト名
@@ -11,12 +11,22 @@ declare global {
 }
 
 const GoogleAdsense: React.FC = () => {
+  const [isError, setIsError] = useState(false)
   useEffect(() => {
     if (window.adsbygoogle && process.env.NODE_ENV === 'production') {
-      const adsbygoogle = window.adsbygoogle || []
-      adsbygoogle.push({})
+      try {
+        const adsbygoogle = window.adsbygoogle || []
+        adsbygoogle.push({})
+      } catch (error) {
+        setIsError(true)
+        console.log(error)
+      }
     }
   }, [])
+
+  if (isError) {
+    return null
+  }
 
   return (
     <Box py={4}>
