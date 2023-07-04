@@ -79,14 +79,14 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
 
   if (isLoading || !origin || !results) {
     return (
-      <Box py={16} sx={{ mx: { sm: 0, md: 8 } }} display={'flex'} justifyContent={'center'}>
+      <Box py={16} display={'flex'} justifyContent={'center'}>
         <CircularProgress />
       </Box>
     )
   }
 
   return (
-    <Box py={8} sx={{ mx: { sm: 0, md: 8 } }}>
+    <Box py={8}>
       <Typography variant='h4' sx={{ fontWeight: 'bold' }}>
         検索結果
       </Typography>

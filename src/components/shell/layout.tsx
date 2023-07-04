@@ -104,7 +104,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
                   </Link>
                 </ListItem>
                 <ListItem disablePadding>
-                  <Link href='/'>
+                  <Link href='/contact'>
                     <ListItemButton>
                       <ListItemIcon sx={{ color: 'black' }}>
                         <MailIcon />

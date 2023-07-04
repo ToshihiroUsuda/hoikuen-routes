@@ -18,14 +18,11 @@ import React from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-/* lib */
-
 /* component */
 import ZipcodeForm from './zipcodeForm'
 
 /* type */
 import { Address } from '../..//libs/zipcodeApi'
-import { gradation } from '../../constants'
 
 const hoikuenTypes = [
   '保育所',
@@ -36,14 +33,6 @@ const hoikuenTypes = [
   '居宅訪問型保育事業者',
   '事業所内保育事業者',
 ]
-
-// export type SearchParams = {
-//   origin: string
-//   type: string[]
-//   age: number
-//   capacity: number
-//   travelMode: 'DRIVE' | 'BICYCLE' | 'WALK'
-// }
 
 const schema = yup.object().shape({
   origin: yup.string().required('必須項目です'),
@@ -89,13 +78,7 @@ const InputForm: React.FC<Props> = (props) => {
   }
 
   return (
-    <Stack
-      component='form'
-      noValidate
-      onSubmit={handleSubmit(onValid)}
-      spacing={2}
-      sx={{ mt: 8, mx: { sm: 0, md: 8 } }}
-    >
+    <Stack component='form' noValidate onSubmit={handleSubmit(onValid)} spacing={2}>
       <Typography variant='h4' sx={{ fontWeight: 'bold' }}>
         検索条件
       </Typography>
@@ -223,12 +206,7 @@ const InputForm: React.FC<Props> = (props) => {
           </TextField>
         )}
       />
-      <Button
-        variant='contained'
-        type='submit'
-        size='large'
-        sx={{ background: gradation, color: 'black', fontWeight: 'bold' }}
-      >
+      <Button variant='contained' type='submit' size='large'>
         検索する
       </Button>
     </Stack>

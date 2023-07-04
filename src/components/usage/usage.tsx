@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 
 /* components */
-import MyLink from '../common/link'
+import Link from '../common/link'
 
 /* constants */
 import { gradation } from '../../constants'
@@ -14,7 +14,6 @@ const Usage: React.FC = () => {
       // bgcolor={'gray'}
       borderRadius={4}
       sx={{
-        mx: { sm: 0, md: 8 },
         background:
           'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),' + gradation,
       }}
@@ -41,7 +40,7 @@ const Usage: React.FC = () => {
         </li>
         <li>
           施設の情報は「
-          <MyLink href='https://www.wam.go.jp/kokodesearch/ANN010100E00.do'>ここdeサーチ</MyLink>
+          <Link href='https://www.wam.go.jp/kokodesearch/ANN010100E00.do'>ここdeサーチ</Link>
           」から2023年6月11日に取得したデータを利用しています。最新状況を反映していない可能性があります。
         </li>
         <li>

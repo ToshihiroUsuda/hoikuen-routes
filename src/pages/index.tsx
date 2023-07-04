@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Typography from '@mui/material/Typography'
+import { Box, Typography } from '@mui/material'
 
 /* components */
 import InputForm, { SearchParams } from '../components/form/form'
 import ResultsView from '../components/results/resultsView'
 import Layout from '../components/shell/layout'
 import Usage from '../components/usage/usage'
-import { Box } from '@mui/material'
+import GoogleAdsense from '../components/common/adsense'
 
 const Home: NextPage = () => {
   const [searchParams, setSearchParams] = useState<SearchParams | null>(null)
@@ -31,15 +31,17 @@ const Home: NextPage = () => {
           保育園・幼稚園ルート検索: 自宅から施設までの距離と所要時間を検索！【神奈川県版】
         </title>
       </Head>
-      <Box pt={16} pb={16}>
-        <Box sx={{ mx: { sm: 0, md: 8 } }} py={4}>
+      <Box pt={16} pb={16} sx={{ mx: { sm: 0, md: 8 } }}>
+        <Box py={4}>
           <Typography variant='h4'>神奈川県版</Typography>
           <Typography variant='h3' sx={{ fontWeight: 'bold' }}>
             保育園・幼稚園ルート検索
           </Typography>
         </Box>
         <Usage />
+        <GoogleAdsense />
         <InputForm onSubmit={onSubmit} />
+        <GoogleAdsense />
         {searchParams && (
           <div ref={resultsViewRef}>
             <ResultsView searchParams={searchParams} />
