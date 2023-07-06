@@ -13,15 +13,17 @@ import ResultsMap from './map'
 
 /* libs */
 import { getGeocodeApiResponse } from '../../libs/geocodingApi'
-import { getTopKNearestHoikuen } from '../../libs/hoikuen'
+import { Prefecture, getTopKNearestHoikuen } from '../../libs/hoikuen'
 import { getRoutesApiResponse } from '../../libs/routesApi'
 
 type Props = {
   searchParams: SearchParams
+  prefecture: Prefecture
 }
 
 const calcRoutes = async (
   params: SearchParams,
+  prefecture: Prefecture,
 ): Promise<{ originLatLng: LatLng; searchResults: HoikuenRoute[] }> => {
   if (process.env.NODE_ENV === 'development') {
     return { originLatLng: testOrigin, searchResults: testResults }
@@ -31,7 +33,7 @@ const calcRoutes = async (
   // 近くの保育園の取得
   const top10Hoikuen = getTopKNearestHoikuen(
     originLatLng,
-    'Kanagawa',
+    prefecture,
     10,
     params.type,
     params.age,
@@ -51,7 +53,7 @@ const calcRoutes = async (
   return { originLatLng, searchResults }
 }
 
-const ResultsView: React.FC<Props> = ({ searchParams }) => {
+const ResultsView: React.FC<Props> = ({ searchParams, prefecture }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState<HoikuenRoute[]>([])
   const [origin, setOrigin] = useState<LatLng | null>(null)
@@ -60,7 +62,7 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
     setIsLoading(true)
     const getResults = async () => {
       try {
-        const { originLatLng, searchResults } = await calcRoutes(searchParams)
+        const { originLatLng, searchResults } = await calcRoutes(searchParams, prefecture)
         // console.log(originLatLng, searchResults)
 
         const sortedResults = searchResults
@@ -75,7 +77,7 @@ const ResultsView: React.FC<Props> = ({ searchParams }) => {
       }
     }
     getResults()
-  }, [searchParams])
+  }, [searchParams, prefecture])
 
   if (isLoading || !origin || !results) {
     return (

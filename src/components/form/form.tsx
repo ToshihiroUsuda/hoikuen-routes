@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {
   Box,
@@ -14,7 +15,6 @@ import {
   FormHelperText,
   SelectChangeEvent,
 } from '@mui/material'
-import React from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
@@ -23,6 +23,7 @@ import ZipcodeForm from './zipcodeForm'
 
 /* type */
 import { Address } from '../..//libs/zipcodeApi'
+import { Prefecture, prefectureMap } from '../../libs/hoikuen'
 
 const hoikuenTypes = [
   '保育所',
@@ -34,15 +35,14 @@ const hoikuenTypes = [
   '事業所内保育事業者',
 ]
 
-const schema = yup.object().shape({
-  origin: yup.string().required('必須項目です'),
-  type: yup.array().required('最低ひとつ選択してください').of(yup.string().required()).min(1),
-  age: yup.number().required('必須項目です').oneOf([0, 1, 2, 3, 4, 5]),
-  capacity: yup.number().required('必須項目です'),
-  travelMode: yup.string().oneOf(['WALK', 'DRIVE', 'BICYCLE']).required('必須項目です'),
-})
-
-export type SearchParams = yup.InferType<typeof schema>
+// export type SearchParams = yup.InferType<typeof schema>
+export type SearchParams = {
+  origin?: string
+  type?: string[]
+  age?: number
+  capacity?: number
+  travelMode?: NonNullable<'WALK' | 'DRIVE' | 'BICYCLE'>
+}
 
 export const defaultValues: SearchParams = {
   origin: '',
@@ -54,9 +54,24 @@ export const defaultValues: SearchParams = {
 
 type Props = {
   onSubmit: ((res: SearchParams) => void) | ((res: SearchParams) => Promise<void>)
+  prefecture: Prefecture
 }
 
 const InputForm: React.FC<Props> = (props) => {
+  const schema = useMemo(() => {
+    const reObj = new RegExp('^' + prefectureMap[props.prefecture])
+    return yup.object<SearchParams>().shape({
+      origin: yup
+        .string()
+        .required('必須項目です')
+        .matches(reObj, { message: `${prefectureMap[props.prefecture]}の住所を入力してください` }),
+      type: yup.array().required('最低ひとつ選択してください').of(yup.string().required()),
+      age: yup.number().required('必須項目です').oneOf([0, 1, 2, 3, 4, 5]),
+      capacity: yup.number().required('必須項目です'),
+      travelMode: yup.string().oneOf(['WALK', 'DRIVE', 'BICYCLE']).required('必須項目です'),
+    })
+  }, [props.prefecture])
+
   const {
     control,
     formState: { errors },
@@ -78,7 +93,7 @@ const InputForm: React.FC<Props> = (props) => {
   }
 
   return (
-    <Stack component='form' noValidate onSubmit={handleSubmit(onValid)} spacing={2}>
+    <Stack component='form' noValidate onSubmit={handleSubmit(onValid)} spacing={2} sx={{ pt: 4 }}>
       <Typography variant='h4' sx={{ fontWeight: 'bold' }}>
         検索条件
       </Typography>
@@ -206,7 +221,7 @@ const InputForm: React.FC<Props> = (props) => {
           </TextField>
         )}
       />
-      <Button variant='contained' type='submit' size='large'>
+      <Button variant='contained' type='submit' size='large' sx={{ fontSize: 20 }}>
         検索する
       </Button>
     </Stack>

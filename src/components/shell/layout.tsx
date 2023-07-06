@@ -122,6 +122,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           {/* {props.needInquiry && <InquiryButton />} */}
           {!props.home && (
             <Box
+              mb={10}
               sx={{
                 borderTopWidth: 1,
                 borderColor: 'text.main',
@@ -135,7 +136,6 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
             </Box>
           )}
         </Container>
-        <Box></Box>
       </Box>
     </>
   )

@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 
 /* components */
-import Link from '../common/link'
 
 /* constants */
 import { gradation } from '../../constants'
@@ -40,11 +39,11 @@ const Usage: React.FC = () => {
         </li>
         <li>
           施設の情報は「
-          <Link href='https://www.wam.go.jp/kokodesearch/ANN010100E00.do'>ここdeサーチ</Link>
-          」から2023年6月11日に取得したデータを利用しています。最新状況を反映していない可能性があります。
+          <a href='https://www.wam.go.jp/kokodesearch/ANN010100E00.do'>ここdeサーチ</a>
+          」から2023年6月11日に取得したデータを利用しています。ヒットしない施設があったり、最新状況を反映していなかったりする可能性があります。
         </li>
         <li>
-          検索結果として表示される最大10件の施設は、出発地からの直線距離が近い施設を選んでいます。地形や線路などを考慮していないのでご了承ください。
+          検索結果として表示される最大10件の施設は、出発地からの直線距離が近い施設を選んでいます。地形や線路などによって、遠い経路の施設がヒットすることがあります。
         </li>
       </ul>
     </Box>

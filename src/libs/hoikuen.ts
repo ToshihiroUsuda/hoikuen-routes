@@ -5,13 +5,23 @@ import { LatLng, HoikuenLocation } from '../types/location'
 
 import kanagawaLocation from './data/kanagawa.json'
 
-const hoikuenLocationDict: Record<string, HoikuenLocation[]> = {
-  Kanagawa: kanagawaLocation,
+export const prefectureMap = {
+  kanagawa: '神奈川県',
+  tokyo: '東京都',
+}
+
+export const prefectureNames = Object.keys(prefectureMap)
+
+export type Prefecture = keyof typeof prefectureMap
+
+const hoikuenLocationDict: Record<Prefecture, HoikuenLocation[]> = {
+  kanagawa: kanagawaLocation,
+  tokyo: kanagawaLocation,
 }
 
 export const getTopKNearestHoikuen = (
   origin: LatLng,
-  prefecture: 'Kanagawa' | '',
+  prefecture: Prefecture,
   topK: number,
   types: string[],
   age: number,

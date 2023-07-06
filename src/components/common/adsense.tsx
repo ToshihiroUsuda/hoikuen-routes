@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Box } from '@mui/material'
 
-// const hostname = "hoikuen-routes.ver?"  //本番サイトのホスト名
-
 declare global {
   // eslint-disable-next-line no-unused-vars
   interface Window {
@@ -19,7 +17,7 @@ const GoogleAdsense: React.FC = () => {
         adsbygoogle.push({})
       } catch (error) {
         setIsError(true)
-        console.log(error)
+        // console.log(error)
       }
     }
   }, [])
