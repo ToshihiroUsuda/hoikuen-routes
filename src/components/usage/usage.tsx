@@ -22,7 +22,7 @@ const Usage: React.FC = () => {
         使い方
       </Typography>
       <Box display='flex' flexDirection='column' alignItems='center'>
-        <Box display='flex' sx={{ flexDirection: { sm: 'column', md: 'row' } }}>
+        <Box sx={{ display: { sm: 'block', md: 'flex' } }}>
           <Box display='flex' flexDirection='column' alignItems='center'>
             <Box
               height={64}
