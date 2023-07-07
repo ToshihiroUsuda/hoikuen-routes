@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { Box, Typography } from '@mui/material'
 
 /* components */
@@ -14,11 +15,55 @@ const Usage: React.FC = () => {
       borderRadius={4}
       sx={{
         background:
-          'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),' + gradation,
+          'linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),' + gradation,
       }}
     >
       <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
         使い方
+      </Typography>
+      <Box display='flex' flexDirection='column' alignItems='center'>
+        <Box display='flex' sx={{ flexDirection: { sm: 'column', md: 'row' } }}>
+          <Box display='flex' flexDirection='column' alignItems='center'>
+            <Box
+              height={64}
+              display='flex'
+              flexDirection='column'
+              justifyContent='center'
+              alignItems='center'
+            >
+              <Typography
+                variant='h6'
+                display='flex'
+                flexDirection='column'
+                sx={{ fontWeight: 'bold' }}
+              >
+                自宅の住所を入力！
+              </Typography>
+            </Box>
+
+            <Image src='/images/lp2.png' alt='パソコンを使う女性' width={320} height={320} />
+          </Box>
+          <Box display='flex' flexDirection='column' alignItems='center'>
+            <Box
+              height={64}
+              display='flex'
+              flexDirection='column'
+              justifyContent='center'
+              alignItems='center'
+            >
+              <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+                近くの施設までの
+              </Typography>
+              <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+                所要時間や距離・ルートを比較！
+              </Typography>
+            </Box>
+            <Image src='/images/lp3.png' alt='地図を見る女性' width={320} height={320} />
+          </Box>
+        </Box>
+      </Box>
+      <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
+        特徴
       </Typography>
       <ul>
         <li>
@@ -40,7 +85,7 @@ const Usage: React.FC = () => {
         <li>
           施設の情報は「
           <a href='https://www.wam.go.jp/kokodesearch/ANN010100E00.do'>ここdeサーチ</a>
-          」から2023年6月11日に取得したデータを利用しています。ヒットしない施設があったり、最新状況を反映していなかったりする可能性があります。
+          」から2023年6月11日に取得した認可施設のデータを利用しています。ヒットしない施設があったり、最新状況を反映していなかったりする可能性があります。また、未認可の施設の情報は掲載していません。
         </li>
         <li>
           検索結果として表示される最大10件の施設は、出発地からの直線距離が近い施設を選んでいます。地形や線路などによって、遠い経路の施設がヒットすることがあります。
