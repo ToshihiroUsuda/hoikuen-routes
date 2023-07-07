@@ -12,7 +12,7 @@ import Usage from '../../components/usage/usage'
 import GoogleAdsense from '../../components/common/adsense'
 
 /*constants*/
-import { Prefecture, prefectureMap } from '../../libs/hoikuen'
+import { prefectureMap, prefectureNames, isValidPrefecture } from '../../libs/hoikuen'
 
 const Search: NextPage = () => {
   const router = useRouter<'/search/[prefecture]'>()
@@ -31,8 +31,7 @@ const Search: NextPage = () => {
     }
   }, [searchParams, resultsViewRef])
 
-  const prefectureNames = Object.keys(prefectureMap)
-  if (prefectureNames.indexOf(prefecture) < 0) {
+  if (prefecture === undefined || !isValidPrefecture(prefecture)) {
     return (
       <Box m={4}>
         <Typography>リンクが不正です。下記をお試しください</Typography>
@@ -65,11 +64,11 @@ const Search: NextPage = () => {
         </Box>
         <Usage />
         <GoogleAdsense />
-        <InputForm onSubmit={onSubmit} prefecture={prefecture as Prefecture} />
+        <InputForm onSubmit={onSubmit} prefecture={prefecture} />
         <GoogleAdsense />
         {searchParams && (
           <div ref={resultsViewRef}>
-            <ResultsView searchParams={searchParams} prefecture={prefecture as Prefecture} />
+            <ResultsView searchParams={searchParams} prefecture={prefecture} />
           </div>
         )}
       </Box>

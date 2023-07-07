@@ -37,11 +37,11 @@ const hoikuenTypes = [
 
 // export type SearchParams = yup.InferType<typeof schema>
 export type SearchParams = {
-  origin?: string
-  type?: string[]
-  age?: number
-  capacity?: number
-  travelMode?: NonNullable<'WALK' | 'DRIVE' | 'BICYCLE'>
+  origin: string
+  type: string[]
+  age: number
+  capacity: number
+  travelMode: NonNullable<'WALK' | 'DRIVE' | 'BICYCLE'>
 }
 
 export const defaultValues: SearchParams = {
@@ -146,9 +146,10 @@ const InputForm: React.FC<Props> = (props) => {
               error={'type' in errors}
             >
               {hoikuenTypes.map((type, index) => {
+                // const checked = field.value !== undefined ? field.value!.indexOf(type) > -1 : false
                 return (
                   <MenuItem key={index} value={type}>
-                    <Checkbox checked={field.value.indexOf(type) > -1} />
+                    <Checkbox checked={field.value!.indexOf(type) > -1} />
                     <ListItemText primary={type} />
                   </MenuItem>
                 )
