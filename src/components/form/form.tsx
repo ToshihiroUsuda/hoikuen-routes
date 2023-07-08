@@ -164,21 +164,39 @@ const InputForm: React.FC<Props> = (props) => {
           name='age'
           control={control}
           render={({ field }) => (
-            <TextField
-              {...field}
-              select
-              label='年齢'
-              error={'age' in errors}
-              helperText={errors.age?.message}
-              sx={{ flexGrow: 1 }}
-            >
-              <MenuItem value={0}>0</MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-            </TextField>
+            <Box sx={{ flexGrow: 1 }}>
+              <TextField
+                {...field}
+                select
+                SelectProps={{ native: true }}
+                label='年齢'
+                error={'age' in errors}
+                helperText={errors.age?.message}
+                sx={{ display: { xs: 'flex', sm: 'none' } }}
+              >
+                <option value={0}>0</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </TextField>
+              <TextField
+                {...field}
+                select
+                label='年齢'
+                error={'age' in errors}
+                helperText={errors.age?.message}
+                sx={{ display: { xs: 'none', sm: 'flex' } }}
+              >
+                <MenuItem value={0}>0</MenuItem>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+              </TextField>
+            </Box>
           )}
         />
         <Box px={2}>
@@ -208,18 +226,35 @@ const InputForm: React.FC<Props> = (props) => {
         name='travelMode'
         control={control}
         render={({ field }) => (
-          <TextField
-            {...field}
-            select
-            label='移動手段'
-            fullWidth
-            error={'travelMode' in errors}
-            helperText={errors.travelMode?.message}
-          >
-            <MenuItem value='DRIVE'>車</MenuItem>
-            <MenuItem value='BICYCLE'>自転車</MenuItem>
-            <MenuItem value='WALK'>徒歩</MenuItem>
-          </TextField>
+          <>
+            <TextField
+              {...field}
+              select
+              SelectProps={{ native: true }}
+              label='移動手段'
+              fullWidth
+              error={'travelMode' in errors}
+              helperText={errors.travelMode?.message}
+              sx={{ display: { xs: 'block', sm: 'none' } }}
+            >
+              <option value='DRIVE'>車</option>
+              <option value='BICYCLE'>自転車</option>
+              <option value='WALK'>徒歩</option>
+            </TextField>
+            <TextField
+              {...field}
+              select
+              label='移動手段'
+              fullWidth
+              error={'travelMode' in errors}
+              helperText={errors.travelMode?.message}
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              <MenuItem value='DRIVE'>車</MenuItem>
+              <MenuItem value='BICYCLE'>自転車</MenuItem>
+              <MenuItem value='WALK'>徒歩</MenuItem>
+            </TextField>
+          </>
         )}
       />
       <Button variant='contained' type='submit' size='large' sx={{ fontSize: 20 }}>

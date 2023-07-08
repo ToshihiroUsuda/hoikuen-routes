@@ -41,7 +41,6 @@ const ResultsTable: React.FC<Props> = ({ searchResults, age }) => {
             <TableCell align='center'>距離</TableCell>
             <TableCell align='center'>施設の種類</TableCell>
             <TableCell align='center'>{`${age.toFixed()}歳児の定員`}</TableCell>
-            {/* <TableCell align='center'> 住所</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,7 +54,6 @@ const ResultsTable: React.FC<Props> = ({ searchResults, age }) => {
               <TableCell align='center'>{formatDistance(row.distanceMeters)}</TableCell>
               <TableCell align='center'>{row.type}</TableCell>
               <TableCell align='center'>{getCapacity(row, age)}人</TableCell>
-              {/* <TableCell>{row.address}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>

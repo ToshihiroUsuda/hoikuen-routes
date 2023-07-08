@@ -104,6 +104,9 @@ const ResultsView: React.FC<Props> = ({ searchParams, prefecture }) => {
           <Box pt={4} display={'block'}>
             <ResultsTable searchResults={results} age={searchParams.age} />
           </Box>
+          <Typography sx={{ display: { sx: 'block', sm: 'none' } }}>
+            ※左右にスクロールできます
+          </Typography>
         </Box>
       )}
     </Box>
