@@ -34,7 +34,6 @@ const Search: NextPage = () => {
   if (prefecture === undefined || !isValidPrefecture(prefecture)) {
     return (
       <Box m={4}>
-        <Typography>リンクが不正です。下記をお試しください</Typography>
         <ul>
           {prefectureNames.map((key) => {
             return (
