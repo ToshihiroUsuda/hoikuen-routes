@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
           {process.env.NODE_ENV === 'production' && (
             <script
               async
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_ADSENSE_KEY}`}
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_KEY}`}
               crossOrigin='anonymous'
             ></script>
           )}

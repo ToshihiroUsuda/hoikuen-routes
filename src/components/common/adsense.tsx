@@ -36,7 +36,7 @@ const GoogleAdsense: React.FC = () => {
           // data-ad-format='fluid'
           data-ad-format='auto'
           data-full-width-responsive='true'
-          data-ad-client={process.env.NEXT_ADSENSE_KEY || ''}
+          data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_KEY || ''}
           data-ad-slot='XXXXXXXXX'
         ></ins>
       ) : (
