@@ -1,16 +1,12 @@
-import { useMemo, useEffect } from 'react'
+import { useMemo } from 'react'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 
 import createEmotionCache from '../createEmotionCache'
 import defaultTheme from '../theme'
-
-import * as gtag from '../libs/gtag'
-import { GaScript } from '../components/common/gascript'
 
 const clientSideEmotionCache = createEmotionCache()
 interface MyAppProps extends AppProps {
@@ -20,17 +16,17 @@ interface MyAppProps extends AppProps {
 function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
-  const router = useRouter()
+  // const router = useRouter()
 
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      gtag.pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+  // useEffect(() => {
+  //   const handleRouteChange = (url: string) => {
+  //     gtag.pageview(url)
+  //   }
+  //   router.events.on('routeChangeComplete', handleRouteChange)
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange)
+  //   }
+  // }, [router.events])
 
   const theme = useMemo(
     () =>
@@ -42,7 +38,7 @@ function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <GaScript />
+        {/* <GaScript /> */}
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
       <ThemeProvider theme={theme}>
